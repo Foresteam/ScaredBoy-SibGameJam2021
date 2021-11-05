@@ -7,35 +7,45 @@ using UnityEngine;
 
 namespace Assets.Scripts.Inventory {
 	class Inventory : MonoBehaviour {
-		[SerializeField] private Color _frameColorActive;
+		[SerializeField] private Color _frameColorActive = Color.yellow;
 		[SerializeField] private Color _frameColorInactive = Color.white;
-		[SerializeField] private int _size;
+		[SerializeField] private int _size = 3;
+		public int size { get => _size; }
 
-		private Item[] _items;
+		private List<Slot> _slots;
 		private int _activeSlot;
 
 		void Start() {
-			_items = new Item[_size];
+			_activeSlot = -1;
+			_slots = new List<Slot>(FindObjectsOfType<Slot>());
+			_slots.Reverse();
+			SelectItem(0);
 		}
 		public void SelectItem(int slot) {
-			_items[_activeSlot].PaintFrame(_frameColorInactive);
-			_items[slot].PaintFrame(_frameColorActive);
+			if (_activeSlot >= 0)
+				_slots[_activeSlot].PaintFrame(_frameColorInactive);
+			_slots[slot].PaintFrame(_frameColorActive);
 			_activeSlot = slot;
 		}
-		public void PickUpItem(WorldItem worldItem, Vector2 playerPosition) {
-			int slot = 0;
-			for (; slot < _size; slot++)
-				if (_items[slot] == null)
-					break;
-			if (slot == _size) {
-				slot = _activeSlot;
-				DropItem(slot, playerPosition);
+		public void PickupItem(WorldItem worldItem, Vector2 playerPosition) {
+			int slot;
+			if (!_slots[_activeSlot].IsEmpty()) {
+				for (slot = 0; slot < size; slot++)
+					if (_slots[slot].IsEmpty())
+						break;
+				if (slot == size) {
+					slot = _activeSlot;
+					DropItem(playerPosition);
+				}
 			}
-			_items[slot] = new Item(worldItem, slot);
+			else
+				slot = _activeSlot;
+			_slots[slot].DoPickup(worldItem);
 		}
-		public void DropItem(int slot, Vector2 playerPosition) {
-			_items[slot].DoDrop(playerPosition);
-			_items[slot] = null;
+		public void DropItem(Vector2 playerPosition) {
+			if (_slots[_activeSlot].IsEmpty())
+				return;
+			_slots[_activeSlot].DoDrop(playerPosition);
 		}
 	}
 }
