@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
-using Assets.Scripts;
 
 namespace Assets.Scripts.Inventory {
     public class Item {
         public WorldItem worldItem { get; private set; }
-        public GameObject uiItem { get; private set; }
+        private GameObject _uiItem;
         private Sprite _uiSprite;
 
         public Item(WorldItem worldRepresentation, int slot) {
@@ -16,10 +15,12 @@ namespace Assets.Scripts.Inventory {
             _uiSprite = worldRepresentation.GetComponent<SpriteRenderer>().sprite;
 
             GameObject canvas = Object.FindObjectOfType<IngameMenu.GUICanvas>().gameObject;
-            uiItem = GameObject.Instantiate(worldItem.uiItem);
-            uiItem.transform.parent = canvas.GetComponentInChildren<IngameMenu.GUIItems>().transform.GetChild(slot);
-            var rt = uiItem.GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x + rt.sizeDelta.x * slot, rt.anchoredPosition.y);
+            _uiItem = GameObject.Instantiate(worldItem.uiItem);
+            _uiItem.GetComponent<Image>().sprite = _uiSprite;
+            _uiItem.transform.SetParent(canvas.GetComponentInChildren<IngameMenu.GUIItems>().transform.GetChild(slot));
+            var rt = _uiItem.GetComponent<RectTransform>();
+            //rt.localPosition = new Vector3();
+           // rt.localScale = new Vector3(1, 1, 1);
 
             worldItem.gameObject.SetActive(false); // deactivate the world representation, leaving the UI one only
         }
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Inventory {
             worldItem.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.value * 5, Random.value * 5);
         }
         public void PaintFrame(Color color) {
-            uiItem.GetComponent<Image>().color = color;
+            _uiItem.GetComponent<Image>().color = color;
         }
     }
 }

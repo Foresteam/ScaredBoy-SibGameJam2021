@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Inventory {
-	class Inventory {
-		private Color _frameColorActive, _frameColorInactive = Color.white;
+	class Inventory : MonoBehaviour {
+		[SerializeField] private Color _frameColorActive;
+		[SerializeField] private Color _frameColorInactive = Color.white;
+		[SerializeField] private int _size;
 
-		private int _size;
 		private Item[] _items;
 		private int _activeSlot;
 
-		public Inventory(int size, Color frameColorActive, Color frameColorInactive, GameObject uiItemPrefab) {
-			_frameColorActive = frameColorActive;
-			_frameColorInactive = frameColorInactive;
+		void Start() {
 			_items = new Item[_size];
 		}
 		public void SelectItem(int slot) {
