@@ -18,7 +18,7 @@ namespace Assets.Scripts.Inventory {
 		void Start() {
 			_activeSlot = -1;
 			_slots = new List<Slot>(FindObjectsOfType<Slot>());
-			_slots.Reverse();
+			_slots.Sort((Slot a, Slot b) => a.gameObject.name.CompareTo(b.gameObject.name));
 			SelectItem(0);
 		}
 		public void SelectItem(int slot) {
