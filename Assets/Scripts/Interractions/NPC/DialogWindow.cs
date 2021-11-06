@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public class DialogWindow : MonoBehaviour {
+    [SerializeField] private float _hideAfter = 5;
     private Coroutine _autoHide = null;
-    public float hideAfter = 5;
 
     void Start() {
         Hide();
@@ -11,7 +11,7 @@ public class DialogWindow : MonoBehaviour {
 
     private IEnumerator AutoHide() {
         float timeElapsed = 0;
-        while (timeElapsed < hideAfter) {
+        while (timeElapsed < _hideAfter) {
             timeElapsed += Time.deltaTime;
             yield return null;
         }
