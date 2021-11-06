@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 [RequireComponent(typeof(Inventory))]
 public class PlayerControl : MonoBehaviour {
-	public float Speed;
-	public SpriteRenderer PlayerSprite;
+	[SerializeField] private Text _hint;
+	[SerializeField] private float _speed;
+	[SerializeField] private SpriteRenderer _playerSprite;
+	public string textWhenPickUp, textWhenInterract;
+
 	private Inventory _inventory;
 	private Pickuper _pickuper;
 	private Flashlight _flashlight;
@@ -30,15 +34,22 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.E)) {
-			AInterractor aInterractor = _pickuper.toInterract;
-			if (aInterractor != null && aInterractor.gameObject.activeInHierarchy) {
-				if (aInterractor is WorldItem)
-					_inventory.PickupItem((WorldItem)aInterractor, new Vector2(transform.position.x, transform.position.y));
-				else
-					aInterractor.Interract();
-			}
+		AInterractor aInterractor = _pickuper.toInterract;
+		if (aInterractor != null && aInterractor.gameObject.activeInHierarchy)
+			if (aInterractor is WorldItem)
+				_hint.text = textWhenPickUp;
+			else
+				_hint.text = textWhenInterract;
+		else
+			_hint.text = "";
+
+		if (Input.GetKeyDown(KeyCode.E) && aInterractor != null && aInterractor.gameObject.activeInHierarchy) {
+			if (aInterractor is WorldItem)
+				_inventory.PickupItem((WorldItem)aInterractor, new Vector2(transform.position.x, transform.position.y));
+			else
+				aInterractor.Interract();
 		}
+
 		if (Input.GetKeyDown(KeyCode.Q))
 			_inventory.DropItem(transform.position);
 		for (int slot = 0; slot < _inventory.size; slot++)
@@ -51,7 +62,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 	public void Run() {
 		Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-		gameObject.transform.position += Direction * Speed;
-		PlayerSprite.flipX = Direction.x < 0;
+		gameObject.transform.position += Direction * _speed * Time.deltaTime;
+		_playerSprite.flipX = Direction.x < 0;
 	}
 }

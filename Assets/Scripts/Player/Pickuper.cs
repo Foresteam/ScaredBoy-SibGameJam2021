@@ -18,7 +18,7 @@ public class Pickuper : MonoBehaviour {
 		if (!_toInterract.Contains(aInterractor))
 			_toInterract.Add(aInterractor);
 		_toInterract.Sort((AInterractor a, AInterractor b) => {
-			if (Vector3.Distance(a.transform.position, transform.parent.position) >= Vector3.Distance(b.transform.position, transform.parent.position))
+			if (Vector3.Distance(a.transform.position, transform.parent.position) >= Vector3.Distance(b.transform.position, transform.parent.position) && a.gameObject.activeInHierarchy)
 				return -1;
 			else
 				return 1;
