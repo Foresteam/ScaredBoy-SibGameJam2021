@@ -23,7 +23,6 @@ public class PlayerControl : MonoBehaviour {
 		if ((UnityEngine.Object)sender != _inventory)
 			return;
 		FlashlightItem _;
-		Debug.Log(_flashlight.gameObject);
 		if (item != null && item.TryGetComponent<FlashlightItem>(out _))
 			_flashlight.On();
 		else
