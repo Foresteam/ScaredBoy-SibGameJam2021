@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 	class Inventory : MonoBehaviour {
@@ -18,7 +14,7 @@ using UnityEngine;
 
 		void Start() {
 			_activeSlot = -1;
-			_slots = new List<InventorySlot>(FindObjectsOfType<InventorySlot>());
+			_slots = new List<InventorySlot>(FindObjectOfType<GUICanvas>().GetComponentInChildren<GUIItems>().GetComponentsInChildren<InventorySlot>());
 			_slots.Sort((InventorySlot a, InventorySlot b) => a.gameObject.name.CompareTo(b.gameObject.name));
 			SelectItem(0);
 		}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickuper : MonoBehaviour {
+public class PlayerInterractor : MonoBehaviour {
 	public AInterractor toInterract { get; private set; }
 	private List<AInterractor> _toInterract;
 
@@ -18,7 +18,7 @@ public class Pickuper : MonoBehaviour {
 		if (!_toInterract.Contains(aInterractor))
 			_toInterract.Add(aInterractor);
 		_toInterract.Sort((AInterractor a, AInterractor b) => {
-			if (Vector3.Distance(a.transform.position, transform.parent.position) >= Vector3.Distance(b.transform.position, transform.parent.position) && a.gameObject.activeInHierarchy)
+			if (Vector3.Distance(a.transform.position, transform.parent.position) >= Vector3.Distance(b.transform.position, transform.parent.position) && b.gameObject.activeInHierarchy)
 				return -1;
 			else
 				return 1;

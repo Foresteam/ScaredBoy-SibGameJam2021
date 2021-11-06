@@ -12,12 +12,12 @@ public class PlayerControl : MonoBehaviour {
 	public string textWhenPickUp, textWhenInterract;
 
 	private Inventory _inventory;
-	private Pickuper _pickuper;
+	private PlayerInterractor _interractor;
 	private Flashlight _flashlight;
 
 	void Start() {
 		_inventory = GetComponent<Inventory>();
-		_pickuper = GetComponentInChildren<Pickuper>();
+		_interractor = GetComponentInChildren<PlayerInterractor>();
 		_flashlight = GetComponentInChildren<Flashlight>();
 
 		_inventory.OnSelectedItemChange += OnSelectedItemChanged;
@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update() {
-		AInterractor aInterractor = _pickuper.toInterract;
+		AInterractor aInterractor = _interractor.toInterract;
 		if (aInterractor != null && aInterractor.gameObject.activeInHierarchy)
 			if (aInterractor is WorldItem)
 				_hint.text = textWhenPickUp;
