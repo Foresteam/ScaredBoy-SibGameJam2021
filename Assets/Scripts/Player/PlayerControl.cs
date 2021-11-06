@@ -31,9 +31,13 @@ public class PlayerControl : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.E)) {
-			WorldItem worldItem = _pickuper.toBePickedUp;
-			if (worldItem != null && worldItem.gameObject.activeInHierarchy)
-				_inventory.PickupItem(worldItem, new Vector2(transform.position.x, transform.position.y));
+			AInterractor aInterractor = _pickuper.toInterract;
+			if (aInterractor != null && aInterractor.gameObject.activeInHierarchy) {
+				if (aInterractor is WorldItem)
+					_inventory.PickupItem((WorldItem)aInterractor, new Vector2(transform.position.x, transform.position.y));
+				else
+					aInterractor.Interract();
+			}
 		}
 		if (Input.GetKeyDown(KeyCode.Q))
 			_inventory.DropItem(transform.position);

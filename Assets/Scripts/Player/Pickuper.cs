@@ -3,36 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickuper : MonoBehaviour {
-	public WorldItem toBePickedUp { get; private set; }
-	private List<WorldItem> _canBePickedUp;
+	public AInterractor toInterract { get; private set; }
+	private List<AInterractor> _toInterract;
 
     private void Start() {
-		toBePickedUp = null;
-		_canBePickedUp = new List<WorldItem>();
+		toInterract = null;
+		_toInterract = new List<AInterractor>();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		WorldItem worldItem;
-		if (!collision.TryGetComponent<WorldItem>(out worldItem))
+		AInterractor aInterractor;
+		if (!collision.TryGetComponent<AInterractor>(out aInterractor))
 			return;
-		if (!_canBePickedUp.Contains(worldItem))
-			_canBePickedUp.Add(worldItem);
-		_canBePickedUp.Sort((WorldItem a, WorldItem b) => {
+		if (!_toInterract.Contains(aInterractor))
+			_toInterract.Add(aInterractor);
+		_toInterract.Sort((AInterractor a, AInterractor b) => {
 			if (Vector3.Distance(a.transform.position, transform.parent.position) >= Vector3.Distance(b.transform.position, transform.parent.position))
 				return -1;
 			else
 				return 1;
 		});
-		toBePickedUp = _canBePickedUp[0];
+		toInterract = _toInterract[0];
 	}
 	private void OnTriggerExit2D(Collider2D collision) {
-		WorldItem worldItem;
-		if (!collision.TryGetComponent<WorldItem>(out worldItem))
+		AInterractor aInterractor;
+		if (!collision.TryGetComponent<AInterractor>(out aInterractor))
 			return;
-		_canBePickedUp.Remove(worldItem);
-		if (_canBePickedUp.Count > 0)
-			toBePickedUp = _canBePickedUp[0];
+		_toInterract.Remove(aInterractor);
+		if (_toInterract.Count > 0)
+			toInterract = _toInterract[0];
 		else
-			toBePickedUp = null;
+			toInterract = null;
 	}
 }
