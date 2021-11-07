@@ -24,6 +24,8 @@ using UnityEngine.UI;
 
 			_uiItem = GameObject.Instantiate(_uiItemPrefab, transform);
 			_uiItem.GetComponent<Image>().sprite = _uiSprite;
+			var rt = _uiItem.GetComponent<RectTransform>();
+			rt.sizeDelta = GetComponent<RectTransform>().sizeDelta;
 
 			_worldItem.gameObject.SetActive(false); // deactivate the world representation, leaving the UI one only
 		}
