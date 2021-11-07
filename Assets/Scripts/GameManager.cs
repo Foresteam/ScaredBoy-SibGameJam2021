@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float a = 0;
     public IEnumerator Death()
     {
+        FindObjectOfType<PlayerControl>().locked = true;
         yield return new WaitForSeconds(1);
         for (float i = 0; i < 0.8f; i += 0.01f)
         {

@@ -11,11 +11,11 @@ public class PlayerControl : MonoBehaviour {
 	[SerializeField] private GameObject _playerSprite;
 	public string textWhenPickUp, textWhenInterract;
 	public Transform ObjectsInHand;
-	public bool CanMove;
+	public bool locked { get; set; }
 
 	private Inventory _inventory;
 	private PlayerInterractor _interractor;
-	public Flashlight _flashlight;
+	public Flashlight flashlight;
 
 	public GameObject WalikingSprite;
 	public GameObject StaySprite;
@@ -23,9 +23,10 @@ public class PlayerControl : MonoBehaviour {
 	void Start() {
 		_inventory = GetComponent<Inventory>();
 		_interractor = GetComponentInChildren<PlayerInterractor>();
-		_flashlight = GetComponentInChildren<Flashlight>();
+		flashlight = GetComponentInChildren<Flashlight>();
 
 		_inventory.OnSelectedItemChange += OnSelectedItemChanged;
+		locked = false;
 	}
 
 	void OnSelectedItemChanged(object sender, WorldItem item) {
@@ -33,9 +34,9 @@ public class PlayerControl : MonoBehaviour {
 			return;
 		FlashlightItem _;
 		if (item != null && item.TryGetComponent<FlashlightItem>(out _))
-			_flashlight.On();
+			flashlight.On();
 		else
-			_flashlight.Off();
+			flashlight.Off();
 	}
 
 	void Update() {
@@ -49,6 +50,9 @@ public class PlayerControl : MonoBehaviour {
 				_hint.text = textWhenInterract;
 		else
 			_hint.text = "";
+		
+		if (locked)
+			return;
 
 		if (Input.GetKeyDown(KeyCode.E) && aInterractor != null && aInterractor.gameObject.activeInHierarchy) {
 			if (aInterractor is WorldItem)
@@ -63,10 +67,12 @@ public class PlayerControl : MonoBehaviour {
 			if (Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), "Alpha" + (slot + 1)))) // black magic
 				_inventory.SelectItem(slot);
 	}
-	private void FixedUpdate() {
+	void FixedUpdate() {
+		if (locked)
+			return;
 		if (Input.GetButton("Horizontal"))
 		{
-			Run();
+			Walk();
 			WalikingSprite.SetActive(true);
 			StaySprite.SetActive(false);
 		}
@@ -76,23 +82,18 @@ public class PlayerControl : MonoBehaviour {
 			StaySprite.SetActive(true);
 		}
 	}
-	public void Run() {
-		if (CanMove)
+	public void Walk() {
+		Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+		gameObject.transform.position += Direction * _speed * Time.deltaTime;
+		if (Direction.x < 0)
 		{
-			
-
-			Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-			gameObject.transform.position += Direction * _speed * Time.deltaTime;
-			if (Direction.x < 0)
-			{
-				ObjectsInHand.localScale = new Vector3(-1, 1, 1);
-				_playerSprite.transform.localScale = new Vector3(-1,1,1);
-			}
-			else
-			{
-				ObjectsInHand.localScale = new Vector3(1, 1, 1);
-				_playerSprite.transform.localScale = new Vector3(1, 1, 1);
-			}
+			ObjectsInHand.localScale = new Vector3(-1, 1, 1);
+			_playerSprite.transform.localScale = new Vector3(-1,1,1);
+		}
+		else
+		{
+			ObjectsInHand.localScale = new Vector3(1, 1, 1);
+			_playerSprite.transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
 }

@@ -4399,7 +4399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6514729196769650762
 Transform:
   m_ObjectHideFlags: 0
@@ -4426,12 +4426,12 @@ GameObject:
   - component: {fileID: 6514729197186414629}
   - component: {fileID: 6514729197186414630}
   m_Layer: 0
-  m_Name: Monstr
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6514729197186414629
 Transform:
   m_ObjectHideFlags: 0
@@ -4656,7 +4656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fantom: {fileID: 1024342239}
-  Monstr: {fileID: 6514729197186414628}
+  Monster: {fileID: 6514729197186414628}
   RealObject: {fileID: 6514729196769650761}
   gameManager: {fileID: 686371496}
 --- !u!4 &6514729198117063048

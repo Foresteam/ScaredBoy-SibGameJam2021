@@ -24,10 +24,10 @@ public class CameraFollowing : MonoBehaviour
         float xOkMax = _maxX - xCenterOffest;
         float xFuckupMin = cam.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
         float xFuckupMax = cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
-        Debug.Log(xFuckupMin);
-        if (xFuckupMin/*  - .2f */ <= _minX)
+        
+        if (xFuckupMin <= _minX)
             newPos.x = xOkMin;
-        if (xFuckupMax/*  + .2f */ >= _maxX)
+        if (xFuckupMax >= _maxX)
             newPos.x = xOkMax;
 
         transform.position = newPos;
