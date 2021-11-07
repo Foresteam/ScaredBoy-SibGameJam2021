@@ -11,10 +11,11 @@ public class PlayerControl : MonoBehaviour {
 	[SerializeField] private SpriteRenderer _playerSprite;
 	public string textWhenPickUp, textWhenInterract;
 	public Transform ObjectsInHand;
+	public bool CanMove;
 
 	private Inventory _inventory;
 	private PlayerInterractor _interractor;
-	private Flashlight _flashlight;
+	public Flashlight _flashlight;
 
 
 	void Start() {
@@ -65,17 +66,20 @@ public class PlayerControl : MonoBehaviour {
 			Run();
 	}
 	public void Run() {
-		Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-		gameObject.transform.position += Direction * _speed * Time.deltaTime;
-		if (Direction.x < 0)
-        {
-			ObjectsInHand.localScale = new Vector3(-1, 1, 1);
-			_playerSprite.flipX = true;
-		}
-		else
-        {
-			ObjectsInHand.localScale = new Vector3(1, 1, 1);
-			_playerSprite.flipX = false;
+		if (CanMove)
+		{
+			Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+			gameObject.transform.position += Direction * _speed * Time.deltaTime;
+			if (Direction.x < 0)
+			{
+				ObjectsInHand.localScale = new Vector3(-1, 1, 1);
+				_playerSprite.flipX = true;
+			}
+			else
+			{
+				ObjectsInHand.localScale = new Vector3(1, 1, 1);
+				_playerSprite.flipX = false;
+			}
 		}
 	}
 }

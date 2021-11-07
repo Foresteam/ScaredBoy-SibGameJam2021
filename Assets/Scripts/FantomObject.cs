@@ -5,25 +5,43 @@ using UnityEngine;
 public class FantomObject : MonoBehaviour
 {
     public GameObject Fantom;
+    public GameObject Monstr;
     public GameObject RealObject;
     private bool _setReal;
+    public GameManager gameManager;
     void Start()
     {
-        _setReal = false;
         Fantom.SetActive(true);
         RealObject.SetActive(false);
+        Monstr.SetActive(false);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Flashlight _;
-        if (!_setReal && collision.gameObject.TryGetComponent<Flashlight>(out _))
-            SetRealObject();
+        if (collision.gameObject.tag == "Player")
+        {
+            if (collision.gameObject.GetComponent<PlayerControl>()._flashlight.gameObject.active == true)
+            {
+                SetRealObject();
+            }
+            else
+            {
+                StartCoroutine("SetMonstr");
+            }
+        }
     }
     public void SetRealObject()
     {
         Fantom.SetActive(false);
         RealObject.SetActive(true);
-        _setReal = true;
     }
+    IEnumerator SetMonstr()
+    {
+        yield return new WaitForSeconds(1);
+
+        Fantom.SetActive(false);
+        Monstr.SetActive(true);
+        gameManager.StartCoroutine("Death");
+    }
+
 }
