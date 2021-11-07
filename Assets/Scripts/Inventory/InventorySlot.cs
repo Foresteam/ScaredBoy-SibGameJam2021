@@ -25,7 +25,8 @@ public class InventorySlot : MonoBehaviour {
 		_uiItem = GameObject.Instantiate(_uiItemPrefab, transform);
 		_uiItem.GetComponent<Image>().sprite = _uiSprite;
 		var rt = _uiItem.GetComponent<RectTransform>();
-		rt.sizeDelta = GetComponent<RectTransform>().sizeDelta;
+		var sizeDelta = GetComponent<RectTransform>().sizeDelta;
+		rt.sizeDelta = sizeDelta - sizeDelta * .1f;
 
 		_worldItem.gameObject.SetActive(false); // deactivate the world representation, leaving the UI one only
 	}
