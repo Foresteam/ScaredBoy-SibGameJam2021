@@ -8,7 +8,7 @@ using System;
 public class PlayerControl : MonoBehaviour {
 	[SerializeField] private Text _hint;
 	[SerializeField] private float _speed;
-	[SerializeField] private SpriteRenderer _playerSprite;
+	[SerializeField] private GameObject _playerSprite;
 	public string textWhenPickUp, textWhenInterract;
 	public Transform ObjectsInHand;
 	public bool CanMove;
@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour {
 	private PlayerInterractor _interractor;
 	public Flashlight _flashlight;
 
+	public GameObject WalikingSprite;
+	public GameObject StaySprite;
 
 	void Start() {
 		_inventory = GetComponent<Inventory>();
@@ -63,22 +65,33 @@ public class PlayerControl : MonoBehaviour {
 	}
 	private void FixedUpdate() {
 		if (Input.GetButton("Horizontal"))
+		{
 			Run();
+			WalikingSprite.SetActive(true);
+			StaySprite.SetActive(false);
+		}
+		else
+        {
+			WalikingSprite.SetActive(false);
+			StaySprite.SetActive(true);
+		}
 	}
 	public void Run() {
 		if (CanMove)
 		{
+			
+
 			Vector3 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
 			gameObject.transform.position += Direction * _speed * Time.deltaTime;
 			if (Direction.x < 0)
 			{
 				ObjectsInHand.localScale = new Vector3(-1, 1, 1);
-				_playerSprite.flipX = true;
+				_playerSprite.transform.localScale = new Vector3(-1,1,1);
 			}
 			else
 			{
 				ObjectsInHand.localScale = new Vector3(1, 1, 1);
-				_playerSprite.flipX = false;
+				_playerSprite.transform.localScale = new Vector3(1, 1, 1);
 			}
 		}
 	}

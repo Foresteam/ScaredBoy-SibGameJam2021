@@ -2,7 +2,7 @@
 using UnityEngine;
 
 class Inventory : MonoBehaviour {
-	[SerializeField] private Color _frameColorActive = Color.yellow;
+	[SerializeField] private Color _frameColorActive = Color.green;
 	[SerializeField] private Color _frameColorInactive = Color.white;
 	[SerializeField] private WorldItem[] _itemsToAdd;
 	[SerializeField] private int _size = 3;

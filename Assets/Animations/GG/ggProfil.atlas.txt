@@ -1,0 +1,55 @@
+
+ggProfil.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gg1
+  rotate: true
+  xy: 817, 1224
+  size: 64, 63
+  orig: 66, 65
+  offset: 1, 1
+  index: -1
+gg2
+  rotate: true
+  xy: 817, 1064
+  size: 158, 55
+  orig: 161, 58
+  offset: 2, 2
+  index: -1
+gg3
+  rotate: false
+  xy: 1423, 682
+  size: 344, 606
+  orig: 347, 609
+  offset: 2, 1
+  index: -1
+gg4
+  rotate: false
+  xy: 958, 2
+  size: 463, 1286
+  orig: 463, 1286
+  offset: 0, 0
+  index: -1
+gg5
+  rotate: false
+  xy: 2, 364
+  size: 813, 1680
+  orig: 813, 1680
+  offset: 0, 0
+  index: -1
+gg6
+  rotate: true
+  xy: 2, 13
+  size: 349, 954
+  orig: 349, 954
+  offset: 0, 0
+  index: -1
+ggh
+  rotate: false
+  xy: 817, 1290
+  size: 661, 754
+  orig: 668, 754
+  offset: 7, 0
+  index: -1

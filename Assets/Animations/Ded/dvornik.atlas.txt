@@ -1,0 +1,159 @@
+
+dvornik.png
+size: 3083,3466
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+d1
+  rotate: true
+  xy: 2, 1617
+  size: 1612, 2860
+  orig: 1612, 2929
+  offset: 0, 69
+  index: -1
+d10
+  rotate: true
+  xy: 148, 3447
+  size: 17, 51
+  orig: 19, 53
+  offset: 1, 1
+  index: -1
+d11
+  rotate: false
+  xy: 555, 3412
+  size: 132, 52
+  orig: 134, 54
+  offset: 1, 1
+  index: -1
+d12
+  rotate: true
+  xy: 303, 3433
+  size: 31, 88
+  orig: 33, 90
+  offset: 1, 1
+  index: -1
+d13
+  rotate: false
+  xy: 1081, 3373
+  size: 122, 91
+  orig: 124, 93
+  offset: 1, 1
+  index: -1
+d14
+  rotate: false
+  xy: 479, 3413
+  size: 74, 51
+  orig: 76, 53
+  offset: 1, 1
+  index: -1
+d15
+  rotate: false
+  xy: 393, 3414
+  size: 84, 50
+  orig: 86, 52
+  offset: 1, 1
+  index: -1
+d16
+  rotate: false
+  xy: 818, 3401
+  size: 63, 63
+  orig: 65, 65
+  offset: 1, 1
+  index: -1
+d17
+  rotate: false
+  xy: 689, 3403
+  size: 61, 61
+  orig: 63, 64
+  offset: 1, 2
+  index: -1
+d18
+  rotate: false
+  xy: 752, 3402
+  size: 64, 62
+  orig: 66, 64
+  offset: 1, 1
+  index: -1
+d19
+  rotate: false
+  xy: 883, 3401
+  size: 64, 63
+  orig: 66, 66
+  offset: 1, 1
+  index: -1
+d2
+  rotate: true
+  xy: 2, 2
+  size: 1613, 3079
+  orig: 1613, 3079
+  offset: 0, 0
+  index: -1
+d20
+  rotate: true
+  xy: 949, 3401
+  size: 63, 64
+  orig: 65, 66
+  offset: 1, 1
+  index: -1
+d21
+  rotate: true
+  xy: 1015, 3401
+  size: 63, 64
+  orig: 65, 66
+  offset: 1, 1
+  index: -1
+d4
+  rotate: true
+  xy: 1205, 3231
+  size: 233, 1556
+  orig: 233, 1556
+  offset: 0, 0
+  index: -1
+d5
+  rotate: true
+  xy: 201, 3446
+  size: 18, 47
+  orig: 20, 49
+  offset: 1, 1
+  index: -1
+d6
+  rotate: true
+  xy: 250, 3446
+  size: 18, 51
+  orig: 20, 54
+  offset: 1, 2
+  index: -1
+d7
+  rotate: true
+  xy: 48, 3447
+  size: 17, 50
+  orig: 19, 52
+  offset: 1, 1
+  index: -1
+d8
+  rotate: true
+  xy: 100, 3447
+  size: 17, 46
+  orig: 19, 49
+  offset: 1, 1
+  index: -1
+d9
+  rotate: true
+  xy: 2, 3448
+  size: 16, 44
+  orig: 18, 46
+  offset: 1, 1
+  index: -1
+
+dvornik2.png
+size: 1617,3096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+d3
+  rotate: false
+  xy: 2, 2
+  size: 1613, 3092
+  orig: 1613, 3092
+  offset: 0, 0
+  index: -1

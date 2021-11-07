@@ -1,0 +1,69 @@
+
+gg.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a1
+  rotate: false
+  xy: 833, 155
+  size: 648, 728
+  orig: 648, 730
+  offset: 0, 2
+  index: -1
+a2
+  rotate: false
+  xy: 2, 49
+  size: 227, 53
+  orig: 229, 55
+  offset: 1, 1
+  index: -1
+a3
+  rotate: false
+  xy: 2, 2
+  size: 285, 45
+  orig: 287, 51
+  offset: 1, 5
+  index: -1
+a4
+  rotate: true
+  xy: 584, 106
+  size: 305, 247
+  orig: 307, 249
+  offset: 1, 1
+  index: -1
+a5
+  rotate: true
+  xy: 1483, 585
+  size: 298, 947
+  orig: 298, 947
+  offset: 0, 0
+  index: -1
+a6
+  rotate: false
+  xy: 717, 885
+  size: 1030, 1149
+  orig: 1030, 1149
+  offset: 0, 0
+  index: -1
+a7
+  rotate: true
+  xy: 2, 104
+  size: 307, 580
+  orig: 309, 582
+  offset: 1, 1
+  index: -1
+a8
+  rotate: false
+  xy: 2, 413
+  size: 713, 1621
+  orig: 713, 1621
+  offset: 0, 0
+  index: -1
+a9
+  rotate: false
+  xy: 1749, 1087
+  size: 297, 947
+  orig: 297, 947
+  offset: 0, 0
+  index: -1

@@ -6,7 +6,7 @@ public class DialogWindow : MonoBehaviour {
     private Coroutine _autoHide = null;
 
     void Start() {
-        Hide();
+        
     }
 
     private IEnumerator AutoHide() {
