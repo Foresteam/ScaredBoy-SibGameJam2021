@@ -40,6 +40,8 @@ public class PlayerControl : MonoBehaviour {
 		if (aInterractor != null && aInterractor.gameObject.activeInHierarchy)
 			if (aInterractor is WorldItem)
 				_hint.text = textWhenPickUp;
+			else if (aInterractor is NPC)
+				_hint.text = "Поговорить";
 			else
 				_hint.text = textWhenInterract;
 		else
